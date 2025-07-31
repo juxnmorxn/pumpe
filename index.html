@@ -15,76 +15,104 @@
         <!-- Contenido principal -->
         <div class="birthday-card">
             <div class="card-header">
-                <h1 class="title">¡Feliz Cumpleaños!</h1>
-                <div class="heart-container">
-                    <div class="heart"></div>
+                <h1 class="title">¡Feliz Cumpleaños corazon de melon💖!</h1>
+                <div class="gif-container">
+                    <img src="pin.gif" alt="GIF de cumpleaños" class="birthday-gif" id="birthdayGif">
                 </div>
             </div>
             
-            <div class="message-container">
-                <div class="message" id="message1">
-                    <p>Mi amor, en este día tan especial...</p>
+                            <div class="message-container">
+                    <div class="message-display-area">
+                        <div class="message" id="message1">
+                            <p>Gracias por dejarme estar a tu lado mi amor 💖</p>
+                        </div>
+                        <div class="message" id="message2">
+                            <p>Me haces muy feliz cada día que paso contigo</p>
+                        </div>
+                        <div class="message" id="message3">
+                            <p>Contigo me siento muy bien y completo</p>
+                        </div>
+                        <div class="message" id="message4">
+                            <p>Quiero que tengamos nuestra casita juntos</p>
+                        </div>
+                        <div class="message" id="message5">
+                            <p>Te amooo con todo mi corazón 💕</p>
+                        </div>
+                        <div class="message" id="message6">
+                            <p>Perdón por hacerte pasar malos momentos</p>
+                        </div>
+                        <div class="message" id="message7">
+                            <p>Pero quiero que sepas que te amo infinitamente</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="message" id="message2">
-                    <p>Quiero recordarte lo mucho que te amo</p>
+                
+                <!-- Galería de imágenes automática -->
+                <div class="auto-gallery" id="autoGallery" style="display: none;">
+                    <div class="gallery-grid">
+                        <div class="gallery-item" id="galleryItem1" data-caption="Gracias por dejarme estar a tu lado mi amor 💖">
+                            <img src="imagenes/Pumpe/IMG_20250426_180012.jpg" alt="Nuestro momento especial" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem2" data-caption="Me haces muy feliz cada día que paso contigo ✨">
+                            <img src="imagenes/Pumpe/IMG_20250501_194153.jpg" alt="Tu belleza me cautiva" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem3" data-caption="Contigo me siento muy bien y completo 🌟">
+                            <img src="imagenes/Pumpe/IMG_20250501_193335.jpg" alt="Momentos mágicos juntos" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem4" data-caption="Quiero que tengamos nuestra casita juntos 💕">
+                            <img src="imagenes/Pumpe/IMG-20230806-WA0011.jpg" alt="Mi amor eterno" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem5" data-caption="Te amooo con todo mi corazón 🥰">
+                            <img src="imagenes/Pumpe/IMG_20250730_193500.jpg" alt="Mi compañera perfecta" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem6" data-caption="Perdón por hacerte pasar malos momentos 💝">
+                            <img src="imagenes/Pumpe/IMG_20250702_222210.jpg" alt="Mi amor crece cada día" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem7" data-caption="Pero quiero que sepas que te amo infinitamente 🌈">
+                            <img src="imagenes/Pumpe/IMG_20250426_175654.jpg" alt="Mi sueño hecho realidad" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem8" data-caption="Eres mi sueño hecho realidad 💫">
+                            <img src="imagenes/Pumpe/IMG_20250513_220837.jpg" alt="Todo es perfecto contigo" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem9" data-caption="Contigo todo es perfecto 🌟">
+                            <img src="imagenes/Pumpe/64419.jpg" alt="La luz de mi vida" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem10" data-caption="Cada momento contigo es especial 💖">
+                            <img src="imagenes/Pumpe/IMG_20250702_222305.jpg" alt="Momentos especiales" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem11" data-caption="Gracias por llenar mi vida de amor 🥰">
+                            <img src="imagenes/Pumpe/IMG_20250608_215054.jpg" alt="Mi vida llena de amor" class="gallery-image">
+                        </div>
+                        <div class="gallery-item" id="galleryItem12" data-caption="¡Feliz cumpleaños mi amor! 🎉💖 Te amo infinitamente">
+                            <img src="imagenes/Pumpe/FB_IMG_1746769030877.jpg" alt="¡Feliz cumpleaños mi amor!" class="gallery-image">
+                        </div>
+                    </div>
                 </div>
-                <div class="message" id="message3">
-                    <p>Cada día a tu lado es un regalo</p>
-                </div>
-                <div class="message" id="message4">
-                    <p>Gracias por ser la luz de mi vida</p>
-                </div>
-                <div class="message" id="message5">
-                    <p>¡Que este año esté lleno de amor y felicidad!</p>
-                </div>
-            </div>
             
-            <!-- Galería de fotos -->
-            <div class="photo-gallery">
-                <h3>Nuestros Momentos Especiales</h3>
-                <div class="gallery-container">
-                    <div class="photo-slide active">
-                        <div class="photo-placeholder">
-                            <p>📸 Foto 1</p>
-                            <small>Haz clic para agregar tu foto</small>
-                        </div>
-                    </div>
-                    <div class="photo-slide">
-                        <div class="photo-placeholder">
-                            <p>📸 Foto 2</p>
-                            <small>Haz clic para agregar tu foto</small>
-                        </div>
-                    </div>
-                    <div class="photo-slide">
-                        <div class="photo-placeholder">
-                            <p>📸 Foto 3</p>
-                            <small>Haz clic para agregar tu foto</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-nav">
-                    <button class="nav-btn" onclick="changeSlide(-1)">❮</button>
-                    <button class="nav-btn" onclick="changeSlide(1)">❯</button>
-                </div>
-            </div>
+
             
-            <!-- Botón de música -->
-            <div class="music-control">
-                <button id="musicBtn" onclick="toggleMusic()">
-                    <span id="musicIcon">🎵</span>
-                    <span id="musicText">Reproducir Música</span>
-                </button>
-            </div>
+
             
             <!-- Confeti -->
             <div id="confetti-container"></div>
         </div>
     </div>
     
-    <!-- Audio -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    <!-- Audio (reproducción automática) -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="Contigo.mp3" type="audio/mpeg">
     </audio>
+    
+    <!-- Modal para imágenes en tamaño completo -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="Imagen">
+            <div class="image-caption">
+                <p id="modalCaption"></p>
+            </div>
+        </div>
+    </div>
     
     <script src="script.js"></script>
 </body>
