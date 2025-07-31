@@ -378,6 +378,66 @@ function createMusicButton() {
             musicButton.classList.remove('playing');
             musicButton.innerHTML = '🔇';
         });
+        
+        // Reproducir música automáticamente cuando el GIF empiece
+        startMusicWithGif(bgMusic, musicButton);
+    }
+}
+
+// Función para reproducir música automáticamente cuando empiece el GIF
+function startMusicWithGif(bgMusic, musicButton) {
+    const gif = document.querySelector('.birthday-gif');
+    
+    if (gif) {
+        // Detectar cuando el GIF se carga y comienza a reproducirse
+        gif.addEventListener('load', function() {
+            // Esperar un poco para que el GIF comience a reproducirse
+            setTimeout(() => {
+                if (bgMusic && bgMusic.paused && !musicStarted) {
+                    bgMusic.play().then(() => {
+                        musicButton.classList.add('playing');
+                        musicButton.innerHTML = '🎵';
+                        musicStarted = true;
+                        console.log('🎵 Música iniciada automáticamente con el GIF');
+                    }).catch(error => {
+                        console.log('La música se reproducirá cuando el usuario interactúe con la página');
+                    });
+                }
+            }, 1000); // Esperar 1 segundo después de que el GIF se cargue
+        });
+        
+        // También intentar reproducir cuando el GIF se hace visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && bgMusic && bgMusic.paused && !musicStarted) {
+                    setTimeout(() => {
+                        bgMusic.play().then(() => {
+                            musicButton.classList.add('playing');
+                            musicButton.innerHTML = '🎵';
+                            musicStarted = true;
+                            console.log('🎵 Música iniciada automáticamente cuando el GIF es visible');
+                        }).catch(error => {
+                            console.log('La música se reproducirá cuando el usuario interactúe con la página');
+                        });
+                    }, 500);
+                }
+            });
+        });
+        
+        observer.observe(gif);
+        
+        // Reproducir música cuando el usuario haga clic en el GIF
+        gif.addEventListener('click', function() {
+            if (bgMusic && bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    musicButton.classList.add('playing');
+                    musicButton.innerHTML = '🎵';
+                    musicStarted = true;
+                }).catch(error => {
+                    console.log('Error al reproducir música:', error);
+                });
+            }
+        });
     }
 }
 
