@@ -102,10 +102,138 @@ function startAutoPresentation() {
             
             currentIndex++;
             setTimeout(showNextImage, 4000); // 4 segundos por imagen
+        } else {
+            // Al final de todas las imágenes, mostrar mensaje final
+            setTimeout(showFinalMessage, 2000);
         }
     }
     
     showNextImage();
+}
+
+// Función para mostrar mensaje final
+function showFinalMessage() {
+    // Cerrar modal si está abierto
+    const modal = document.getElementById('imageModal');
+    if (modal && modal.style.display === 'block') {
+        modal.style.display = 'none';
+    }
+    
+    // Crear mensaje final
+    const finalMessage = document.createElement('div');
+    finalMessage.className = 'final-message';
+    finalMessage.innerHTML = `
+        <div class="final-text">Te amoo mi vida</div>
+        <div class="final-heart">💖</div>
+    `;
+    
+    // Agregar estilos al mensaje final
+    const finalStyles = document.createElement('style');
+    finalStyles.textContent = `
+        .final-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f7cac9 0%, #b39ddb 40%, #ffe082 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeInFinal 1s ease-out;
+        }
+        
+        .final-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #d50000;
+            text-shadow: 3px 3px 10px rgba(213,0,0,0.3), 0 3px 10px #fff8e1;
+            margin-bottom: 30px;
+            animation: pulseText 2s ease-in-out infinite;
+            text-align: center;
+        }
+        
+        .final-heart {
+            font-size: 8rem;
+            animation: heartBeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(213, 0, 0, 0.5));
+        }
+        
+        @keyframes fadeInFinal {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes pulseText {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .final-text {
+                font-size: 2.5rem;
+            }
+            .final-heart {
+                font-size: 5rem;
+            }
+        }
+    `;
+    document.head.appendChild(finalStyles);
+    
+    document.body.appendChild(finalMessage);
+    
+    // Agregar más confeti para el momento especial
+    setTimeout(() => {
+        addMoreConfetti();
+        addMoreConfetti();
+    }, 1000);
+    
+    // Permitir cerrar el mensaje final con clic
+    finalMessage.addEventListener('click', function() {
+        finalMessage.style.animation = 'fadeOutFinal 0.5s ease-out forwards';
+        setTimeout(() => {
+            if (finalMessage.parentNode) {
+                finalMessage.parentNode.removeChild(finalMessage);
+            }
+        }, 500);
+    });
+    
+    // Agregar animación de salida
+    const fadeOutStyles = document.createElement('style');
+    fadeOutStyles.textContent = `
+        @keyframes fadeOutFinal {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+    `;
+    document.head.appendChild(fadeOutStyles);
 }
 
 // Función para mostrar imagen en modal (optimizada)
