@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Mi Amor! 🎉</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Partículas de fondo -->
+        <div id="particles"></div>
+        
+        <!-- Contenido principal -->
+        <div class="birthday-card">
+            <div class="card-header">
+                <h1 class="title">¡Feliz Cumpleaños!</h1>
+                <div class="heart-container">
+                    <div class="heart"></div>
+                </div>
+            </div>
+            
+            <div class="message-container">
+                <div class="message" id="message1">
+                    <p>Mi amor, en este día tan especial...</p>
+                </div>
+                <div class="message" id="message2">
+                    <p>Quiero recordarte lo mucho que te amo</p>
+                </div>
+                <div class="message" id="message3">
+                    <p>Cada día a tu lado es un regalo</p>
+                </div>
+                <div class="message" id="message4">
+                    <p>Gracias por ser la luz de mi vida</p>
+                </div>
+                <div class="message" id="message5">
+                    <p>¡Que este año esté lleno de amor y felicidad!</p>
+                </div>
+            </div>
+            
+            <!-- Galería de fotos -->
+            <div class="photo-gallery">
+                <h3>Nuestros Momentos Especiales</h3>
+                <div class="gallery-container">
+                    <div class="photo-slide active">
+                        <div class="photo-placeholder">
+                            <p>📸 Foto 1</p>
+                            <small>Haz clic para agregar tu foto</small>
+                        </div>
+                    </div>
+                    <div class="photo-slide">
+                        <div class="photo-placeholder">
+                            <p>📸 Foto 2</p>
+                            <small>Haz clic para agregar tu foto</small>
+                        </div>
+                    </div>
+                    <div class="photo-slide">
+                        <div class="photo-placeholder">
+                            <p>📸 Foto 3</p>
+                            <small>Haz clic para agregar tu foto</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-nav">
+                    <button class="nav-btn" onclick="changeSlide(-1)">❮</button>
+                    <button class="nav-btn" onclick="changeSlide(1)">❯</button>
+                </div>
+            </div>
+            
+            <!-- Botón de música -->
+            <div class="music-control">
+                <button id="musicBtn" onclick="toggleMusic()">
+                    <span id="musicIcon">🎵</span>
+                    <span id="musicText">Reproducir Música</span>
+                </button>
+            </div>
+            
+            <!-- Confeti -->
+            <div id="confetti-container"></div>
+        </div>
+    </div>
+    
+    <!-- Audio -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
