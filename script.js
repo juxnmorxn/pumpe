@@ -2,13 +2,14 @@
 let messageInterval;
 let confettiInterval;
 let effectsInterval;
+let musicStarted = false;
 
 // Inicialización cuando se carga la página
 document.addEventListener('DOMContentLoaded', function() {
     createParticles();
     startMessageAnimation();
     createConfetti();
-    startBackgroundMusic();
+    createMusicButton();
     addSpecialEffects();
     addInteractiveElements();
 });
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Crear partículas de fondo (simplificado)
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 10; // Reducido para mejor rendimiento
+    const particleCount = 8; // Reducido aún más para evitar scroll
     
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
@@ -160,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Crear confeti (simplificado)
 function createConfetti() {
     const confettiContainer = document.getElementById('confetti-container');
-    const confettiCount = 20; // Reducido para mejor rendimiento
+    const confettiCount = 15; // Reducido para mejor rendimiento
     
     for (let i = 0; i < confettiCount; i++) {
         const confetti = document.createElement('div');
@@ -172,25 +173,83 @@ function createConfetti() {
     }
 }
 
-// Control de música automático (simplificado)
-function startBackgroundMusic() {
+// Crear botón de música discreto y bonito
+function createMusicButton() {
+    const musicButton = document.createElement('div');
+    musicButton.className = 'music-button';
+    musicButton.innerHTML = '🎵';
+    musicButton.title = 'Reproducir música';
+    
+    // Agregar estilos al botón
+    const buttonStyles = document.createElement('style');
+    buttonStyles.textContent = `
+        .music-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(213, 0, 0, 0.3);
+        }
+        
+        .music-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .music-button.playing {
+            background: rgba(213, 0, 0, 0.9);
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    `;
+    document.head.appendChild(buttonStyles);
+    
+    document.body.appendChild(musicButton);
+    
+    // Control de música
     const bgMusic = document.getElementById('bgMusic');
     if (bgMusic) {
-        bgMusic.volume = 0.3; // Volumen bajo para música de fondo
+        bgMusic.volume = 0.3;
         
-        // Intentar reproducir automáticamente
-        bgMusic.play().catch(error => {
-            console.log('La música se reproducirá cuando el usuario interactúe con la página');
-        });
-        
-        // Reproducir música cuando el usuario haga clic en cualquier parte
-        document.addEventListener('click', function() {
+        musicButton.addEventListener('click', function() {
             if (bgMusic.paused) {
-                bgMusic.play().catch(error => {
+                bgMusic.play().then(() => {
+                    musicButton.classList.add('playing');
+                    musicButton.innerHTML = '🎵';
+                    musicStarted = true;
+                }).catch(error => {
                     console.log('Error al reproducir música:', error);
                 });
+            } else {
+                bgMusic.pause();
+                musicButton.classList.remove('playing');
+                musicButton.innerHTML = '🔇';
             }
-        }, { once: true }); // Solo una vez
+        });
+        
+        // Cambiar icono cuando la música termine
+        bgMusic.addEventListener('ended', function() {
+            musicButton.classList.remove('playing');
+            musicButton.innerHTML = '🔇';
+        });
     }
 }
 
@@ -199,15 +258,18 @@ function addSpecialEffects() {
     // Efectos al hacer clic en cualquier parte (limitados)
     let clickCount = 0;
     document.addEventListener('click', function(e) {
+        // No activar efectos si se hace clic en el botón de música
+        if (e.target.closest('.music-button')) return;
+        
         clickCount++;
-        if (clickCount <= 5) { // Limitar efectos de clic
+        if (clickCount <= 3) { // Reducido aún más
             createFloatingHearts(e.clientX, e.clientY);
             createSparkles(e.clientX, e.clientY);
         }
     });
     
     // Efectos automáticos reducidos
-    effectsInterval = setInterval(createRandomHearts, 5000); // Cada 5 segundos en lugar de 3
+    effectsInterval = setInterval(createRandomHearts, 8000); // Cada 8 segundos
     
     // Efecto de pulso en el título
     const title = document.querySelector('.title');
@@ -233,7 +295,7 @@ function createFloatingHearts(x, y) {
 }
 
 function createSparkles(x, y) {
-    for (let i = 0; i < 3; i++) { // Reducido de 5 a 3
+    for (let i = 0; i < 2; i++) { // Reducido aún más
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
         sparkle.style.left = (x + Math.random() * 40 - 20) + 'px';
@@ -267,7 +329,7 @@ function createRandomHearts() {
 // Función para agregar más confeti (simplificada)
 function addMoreConfetti() {
     const confettiContainer = document.getElementById('confetti-container');
-    const additionalConfetti = 20; // Reducido de 50 a 20
+    const additionalConfetti = 15; // Reducido aún más
     
     for (let i = 0; i < additionalConfetti; i++) {
         const confetti = document.createElement('div');
